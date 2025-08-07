@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECONOMY PANEL - US Economic Control Center</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🇺🇸 ECONOMY PANEL v4.2.1</h1>
+        <div class="status-indicator">
+          <div class="led active"></div>
+          <span>SYSTEM ONLINE</span>
+        </div>
+      </header>
+
+      <div class="dashboard-grid">
+        <!-- Economic Indicators Section -->
+        <section class="economic-indicators">
+          <h2>📊 US ECONOMIC DASHBOARD</h2>
+          <div class="indicators-grid">
+            <div class="indicator">
+              <div class="indicator-label">GDP (TRILLIONS)</div>
+              <div class="indicator-value" id="gdp">$28.78</div>
+              <div class="indicator-change" id="gdp-change">▲ 0.34%</div>
+            </div>
+            <div class="indicator">
+              <div class="indicator-label">INFLATION RATE</div>
+              <div class="indicator-value" id="inflation">3.21%</div>
+              <div class="indicator-change" id="inflation-change">▼ 0.12%</div>
+            </div>
+            <div class="indicator">
+              <div class="indicator-label">UNEMPLOYMENT</div>
+              <div class="indicator-value" id="unemployment">3.8%</div>
+              <div class="indicator-change" id="unemployment-change">
+                ▼ 0.3%
+              </div>
+            </div>
+            <div class="indicator">
+              <div class="indicator-label">INTEREST RATE</div>
+              <div class="indicator-value" id="interest">5.25%</div>
+              <div class="indicator-change" id="interest-change">▬ 0.00%</div>
+            </div>
+            <div class="indicator">
+              <div class="indicator-label">NATIONAL DEBT</div>
+              <div class="indicator-value" id="debt">$34.56T</div>
+              <div class="indicator-change" id="debt-change">▲ $1.2B</div>
+            </div>
+            <div class="indicator">
+              <div class="indicator-label">CONSUMER CONFIDENCE</div>
+              <div class="indicator-value" id="confidence">69.7</div>
+              <div class="indicator-change" id="confidence-change">▲ 2.1</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Control Panel Section -->
+        <section class="control-panel">
+          <h2>🎛️ POLICY CONTROL CENTER</h2>
+          <div class="control-categories">
+            <div class="category">
+              <h3>💰 ECONOMIC POLICY</h3>
+              <button class="control-btn" onclick="executePolicy('taxes')">
+                RAISE FEDERAL TAXES
+              </button>
+              <button class="control-btn" onclick="executePolicy('interest')">
+                LOWER INTEREST RATE
+              </button>
+              <button class="control-btn" onclick="executePolicy('print')">
+                PRINT MORE MONEY
+              </button>
+              <button class="control-btn" onclick="executePolicy('gas')">
+                FREEZE GAS PRICES
+              </button>
+              <button class="control-btn" onclick="executePolicy('spending')">
+                CUT PUBLIC SPENDING
+              </button>
+            </div>
+            <div class="category">
+              <h3>🧑‍🤝‍🧑 SOCIAL POLICY</h3>
+              <button class="control-btn" onclick="executePolicy('ubi')">
+                INTRODUCE UBI
+              </button>
+              <button class="control-btn" onclick="executePolicy('debt')">
+                CANCEL STUDENT DEBT
+              </button>
+              <button class="control-btn" onclick="executePolicy('wage')">
+                RAISE MINIMUM WAGE
+              </button>
+              <button class="control-btn" onclick="executePolicy('healthcare')">
+                INVEST IN HEALTHCARE
+              </button>
+              <button class="control-btn" onclick="executePolicy('tech')">
+                REGULATE TECH GIANTS
+              </button>
+            </div>
+            <div class="category">
+              <h3>📉 CRYPTO & TECH</h3>
+              <button class="control-btn" onclick="executePolicy('crypto')">
+                LEGALIZE ALL CRYPTO
+              </button>
+              <button class="control-btn" onclick="executePolicy('nft')">
+                TAX NFT TRADING
+              </button>
+              <button class="control-btn" onclick="executePolicy('govcoin')">
+                CREATE GOVCOIN
+              </button>
+              <button class="control-btn" onclick="executePolicy('voting')">
+                LAUNCH BLOCKCHAIN VOTING
+              </button>
+              <button class="control-btn" onclick="executePolicy('ai')">
+                FUND AI OVERSIGHT
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Event Log Section -->
+        <section class="event-log">
+          <h2>📜 EVENT LOG / CONSEQUENCES</h2>
+          <div class="log-container" id="log">
+            <div class="log-entry">
+              System initialized at <span class="log-time"></span>
+            </div>
+            <div class="log-entry">Connected to Federal Reserve data feed</div>
+            <div class="log-entry">
+              Last policy update: 2025-08-08 14:30 EST
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div class="disclaimer">
+          <p>
+            ⚠️ DISCLAIMER: This is a simulation. No actual economic policies are
+            being changed.
+          </p>
+          <p>
+            Data updates every 60 seconds | Last refresh:
+            <span id="refresh-time"></span>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
