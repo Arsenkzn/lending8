@@ -89,11 +89,11 @@ h1 {
 .sk-external-link {
   display: inline-block;
   transition: all 0.2s ease;
-  border: 2px solid #000;
+  border: 2px solid #ffe66d;
   border-radius: 4px;
   padding: 5px;
   background: var(--sk-white);
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: 2px 2px 0px #ffe66d;
   text-decoration: none;
 }
 
