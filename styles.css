@@ -79,6 +79,30 @@ h1 {
   animation: pulse 1s infinite alternate, bounce 2s infinite;
 }
 
+.sk-external-btn {
+  width: 45px;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.sk-external-link {
+  display: inline-block;
+  transition: all 0.2s ease;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  background: var(--sk-white);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+}
+
+.sk-external-link:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+  background: #ffe66d;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -101,7 +125,6 @@ h1 {
 /* Индикаторы экономики */
 .economic-indicators {
   width: 100%;
-  overflow-x: auto;
   padding-bottom: 15px;
   margin-bottom: 20px;
 }
