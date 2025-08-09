@@ -1,14 +1,14 @@
 :root {
   --primary-color: #ff6b6b;
   --secondary-color: #4ecdc4;
-  --accent-color: #ffe66d;
+  --accent-color: #5e027f;
   --bg-color: #1a1a2e;
   --panel-color: #16213e;
   --text-color: #f8f9fa;
   --text-muted: #adb5bd;
   --font-main: "Share Tech Mono", monospace;
   --success-color: #00b894;
-  --warning-color: #fdcb6e;
+  --warning-color: #1100ff;
   --danger-color: #ff7675;
 }
 
@@ -18,23 +18,20 @@
   box-sizing: border-box;
 }
 
+.economic {
+  background-color: antiquewhite;
+}
+
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
   padding: 20px;
   min-height: 100vh;
-  background-image: radial-gradient(
-      circle at 10% 20%,
-      rgba(255, 107, 107, 0.1) 0%,
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(78, 205, 196, 0.1) 0%,
-      transparent 20%
-    );
+  background: url("img/maket.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .container {
@@ -57,6 +54,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  background-color: antiquewhite;
 }
 
 .header-controls {
@@ -65,12 +63,13 @@ header {
   gap: 20px;
 }
 
-h1 {
+h1,
+h2 {
   color: var(--accent-color);
   font-size: 2.2rem;
   letter-spacing: 1px;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-  transform: rotate(-2deg);
+  transform: rotate(-1deg);
   margin: 0;
 }
 
@@ -78,7 +77,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-weight: bold;
 }
 
@@ -121,7 +120,6 @@ h1 {
   padding: 15px;
   margin-bottom: 20px;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 10px rgba(255, 230, 109, 0.3);
 }
 
@@ -209,6 +207,7 @@ h1 {
 /* Control Panel */
 .control-panel {
   position: relative;
+  background-color: antiquewhite;
 }
 
 .control-panel::before {
@@ -369,6 +368,10 @@ h1 {
 .log-entry:last-child {
   margin-bottom: 0;
   border-bottom: none;
+}
+
+.policy-control {
+  color: var(--accent-color);
 }
 
 .log-time {
