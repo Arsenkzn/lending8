@@ -17,148 +17,186 @@
   </head>
   <body>
     <div class="container">
-      <header class="panel-border">
-        <div class="header-content">
-          <h1>🇺🇸 ECONOMY PANEL v4.2.1</h1>
-
-          <a href="https://x.com" target="_blank" class="sk-external-link">
-            <img
-              src="./img/btnX.jpg"
-              alt="External Link"
-              class="sk-external-btn"
-            />
-          </a>
-          <div class="status-indicator">
-            <div class="led active"></div>
-            <span>SYSTEM ONLINE</span>
-          </div>
-        </div>
-      </header>
-
-      <div class="dashboard-grid">
-        <section class="economic-indicators panel-border">
-          <h2 class="economic">
-            <i class="fas fa-chart-line"></i> US ECONOMIC DASHBOARD
-          </h2>
-          <div class="indicators-grid">
-            <div class="indicator">
-              <div class="indicator-label">GDP (TRILLIONS)</div>
-              <div class="indicator-value" id="gdp">$28.78</div>
-              <div class="indicator-change" id="gdp-change">▲ 0.34%</div>
+      <div class="news-log-container">
+        <!-- Левая колонка - новости -->
+        <section class="news-feed panel-border">
+          <h2><i class="fas fa-newspaper"></i> ECONOMIC NEWS FEED</h2>
+          <div class="news-container" id="news-feed">
+            <div class="news-entry">
+              Wall Street traders spotted buying crypto with lunch money
             </div>
-            <div class="indicator">
-              <div class="indicator-label">INFLATION RATE</div>
-              <div class="indicator-value" id="inflation">3.21%</div>
-              <div class="indicator-change" id="inflation-change">▼ 0.12%</div>
+            <div class="news-entry">
+              Federal Reserve considers paying people to spend money
             </div>
-            <div class="indicator">
-              <div class="indicator-label">UNEMPLOYMENT</div>
-              <div class="indicator-value" id="unemployment">3.8%</div>
-              <div class="indicator-change" id="unemployment-change">
-                ▼ 0.3%
-              </div>
-            </div>
-            <div class="indicator">
-              <div class="indicator-label">INTEREST RATE</div>
-              <div class="indicator-value" id="interest">5.25%</div>
-              <div class="indicator-change" id="interest-change">▬ 0.00%</div>
-            </div>
-            <div class="indicator">
-              <div class="indicator-label">NATIONAL DEBT</div>
-              <div class="indicator-value" id="debt">$34.56T</div>
-              <div class="indicator-change" id="debt-change">▲ $1.2B</div>
-            </div>
-            <div class="indicator">
-              <div class="indicator-label">CONSUMER CONFIDENCE</div>
-              <div class="indicator-value" id="confidence">69.7</div>
-              <div class="indicator-change" id="confidence-change">▲ 2.1</div>
+            <div class="news-entry">
+              New study: 99% of economists just making it up as they go
             </div>
           </div>
         </section>
-
-        <!-- Control Panel Section -->
-        <section class="control-panel panel-border">
-          <h2><i class="fas fa-sliders-h"></i> POLICY CONTROL CENTER</h2>
-          <div class="control-categories">
-            <div class="category">
-              <h3><i class="fas fa-money-bill-wave"></i> ECONOMIC POLICY</h3>
-              <div class="category-buttons">
-                <button class="control-btn" onclick="executePolicy('taxes')">
-                  <i class="fas fa-arrow-up"></i> RAISE FEDERAL TAXES
-                </button>
-                <button class="control-btn" onclick="executePolicy('interest')">
-                  <i class="fas fa-arrow-down"></i> LOWER INTEREST RATE
-                </button>
-                <button class="control-btn" onclick="executePolicy('print')">
-                  <i class="fas fa-print"></i> PRINT MORE MONEY
-                </button>
-                <button class="control-btn" onclick="executePolicy('gas')">
-                  <i class="fas fa-gas-pump"></i> FREEZE GAS PRICES
-                </button>
-                <button class="control-btn" onclick="executePolicy('spending')">
-                  <i class="fas fa-cut"></i> CUT PUBLIC SPENDING
-                </button>
-              </div>
-            </div>
-
-            <div class="category">
-              <h3><i class="fas fa-users"></i> SOCIAL POLICY</h3>
-              <div class="category-buttons">
-                <button class="control-btn" onclick="executePolicy('ubi')">
-                  <i class="fas fa-hand-holding-usd"></i> INTRODUCE UBI
-                </button>
-                <button class="control-btn" onclick="executePolicy('debt')">
-                  <i class="fas fa-graduation-cap"></i> CANCEL STUDENT DEBT
-                </button>
-                <button class="control-btn" onclick="executePolicy('wage')">
-                  <i class="fas fa-dollar-sign"></i> RAISE MINIMUM WAGE
-                </button>
-                <button
-                  class="control-btn"
-                  onclick="executePolicy('healthcare')"
-                >
-                  <i class="fas fa-hospital"></i> INVEST IN HEALTHCARE
-                </button>
-                <button class="control-btn" onclick="executePolicy('tech')">
-                  <i class="fas fa-microchip"></i> REGULATE TECH GIANTS
-                </button>
-              </div>
-            </div>
-
-            <div class="category">
-              <h3><i class="fas fa-bitcoin"></i> CRYPTO & TECH</h3>
-              <div class="category-buttons">
-                <button class="control-btn" onclick="executePolicy('crypto')">
-                  <i class="fas fa-coins"></i> LEGALIZE ALL CRYPTO
-                </button>
-                <button class="control-btn" onclick="executePolicy('nft')">
-                  <i class="fas fa-receipt"></i> TAX NFT TRADING
-                </button>
-                <button class="control-btn" onclick="executePolicy('govcoin')">
-                  <i class="fas fa-landmark"></i> CREATE GOVCOIN
-                </button>
-                <button class="control-btn" onclick="executePolicy('voting')">
-                  <i class="fas fa-vote-yea"></i> LAUNCH BLOCKCHAIN VOTING
-                </button>
-                <button class="control-btn" onclick="executePolicy('ai')">
-                  <i class="fas fa-robot"></i> FUND AI OVERSIGHT
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Event Log Section -->
       </div>
 
-      <footer>
-        <div class="disclaimer">
-          <p></p>
-          <p>
-            <span id="refresh-time"></span>
-          </p>
+      <div class="main-panel">
+        <header class="panel-border">
+          <div class="header-content">
+            <h1>🇺🇸 ECONOMY PANEL v4.2.1</h1>
+
+            <a href="https://x.com" target="_blank" class="sk-external-link">
+              <img
+                src="./img/btnX.jpg"
+                alt="External Link"
+                class="sk-external-btn"
+              />
+            </a>
+            <div class="status-indicator">
+              <div class="led active"></div>
+              <span>SYSTEM ONLINE</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <section class="economic-indicators panel-border">
+            <h2 class="economic">
+              <i class="fas fa-chart-line"></i> US ECONOMIC DASHBOARD
+            </h2>
+            <div class="indicators-grid">
+              <div class="indicator">
+                <div class="indicator-label">GDP (TRILLIONS)</div>
+                <div class="indicator-value" id="gdp">$28.78</div>
+                <div class="indicator-change" id="gdp-change">▲ 0.34%</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">INFLATION RATE</div>
+                <div class="indicator-value" id="inflation">3.21%</div>
+                <div class="indicator-change" id="inflation-change">
+                  ▼ 0.12%
+                </div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">UNEMPLOYMENT</div>
+                <div class="indicator-value" id="unemployment">3.8%</div>
+                <div class="indicator-change" id="unemployment-change">
+                  ▼ 0.3%
+                </div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">INTEREST RATE</div>
+                <div class="indicator-value" id="interest">5.25%</div>
+                <div class="indicator-change" id="interest-change">▬ 0.00%</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">NATIONAL DEBT</div>
+                <div class="indicator-value" id="debt">$34.56T</div>
+                <div class="indicator-change" id="debt-change">▲ $1.2B</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">CONSUMER CONFIDENCE</div>
+                <div class="indicator-value" id="confidence">69.7</div>
+                <div class="indicator-change" id="confidence-change">▲ 2.1</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Control Panel Section -->
+          <section class="control-panel panel-border">
+            <h2><i class="fas fa-sliders-h"></i> POLICY CONTROL CENTER</h2>
+            <div class="control-categories">
+              <div class="category">
+                <h3><i class="fas fa-money-bill-wave"></i> ECONOMIC POLICY</h3>
+                <div class="category-buttons">
+                  <button class="control-btn" onclick="executePolicy('taxes')">
+                    <i class="fas fa-arrow-up"></i> RAISE FEDERAL TAXES
+                  </button>
+                  <button
+                    class="control-btn"
+                    onclick="executePolicy('interest')"
+                  >
+                    <i class="fas fa-arrow-down"></i> LOWER INTEREST RATE
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('print')">
+                    <i class="fas fa-print"></i> PRINT MORE MONEY
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('gas')">
+                    <i class="fas fa-gas-pump"></i> FREEZE GAS PRICES
+                  </button>
+                  <button
+                    class="control-btn"
+                    onclick="executePolicy('spending')"
+                  >
+                    <i class="fas fa-cut"></i> CUT PUBLIC SPENDING
+                  </button>
+                </div>
+              </div>
+
+              <div class="category">
+                <h3><i class="fas fa-users"></i> SOCIAL POLICY</h3>
+                <div class="category-buttons">
+                  <button class="control-btn" onclick="executePolicy('ubi')">
+                    <i class="fas fa-hand-holding-usd"></i> INTRODUCE UBI
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('debt')">
+                    <i class="fas fa-graduation-cap"></i> CANCEL STUDENT DEBT
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('wage')">
+                    <i class="fas fa-dollar-sign"></i> RAISE MINIMUM WAGE
+                  </button>
+                  <button
+                    class="control-btn"
+                    onclick="executePolicy('healthcare')"
+                  >
+                    <i class="fas fa-hospital"></i> INVEST IN HEALTHCARE
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('tech')">
+                    <i class="fas fa-microchip"></i> REGULATE TECH GIANTS
+                  </button>
+                </div>
+              </div>
+
+              <div class="category">
+                <h3><i class="fas fa-bitcoin"></i> CRYPTO & TECH</h3>
+                <div class="category-buttons">
+                  <button class="control-btn" onclick="executePolicy('crypto')">
+                    <i class="fas fa-coins"></i> LEGALIZE ALL CRYPTO
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('nft')">
+                    <i class="fas fa-receipt"></i> TAX NFT TRADING
+                  </button>
+                  <button
+                    class="control-btn"
+                    onclick="executePolicy('govcoin')"
+                  >
+                    <i class="fas fa-landmark"></i> CREATE GOVCOIN
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('voting')">
+                    <i class="fas fa-vote-yea"></i> LAUNCH BLOCKCHAIN VOTING
+                  </button>
+                  <button class="control-btn" onclick="executePolicy('ai')">
+                    <i class="fas fa-robot"></i> FUND AI OVERSIGHT
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Event Log Section -->
         </div>
-      </footer>
+      </div>
+
+      <div class="news-log-container">
+        <!-- Правая колонка - лог -->
+        <section class="event-log panel-border">
+          <h2><i class="fas fa-scroll"></i> EVENT LOG / CONSEQUENCES</h2>
+          <div class="log-container" id="log">
+            <div class="log-entry">
+              System initialized at <span class="log-time"></span>
+            </div>
+            <div class="log-entry">Connected to Federal Reserve data feed</div>
+            <div class="log-entry">
+              Last policy update: 2025-08-08 14:30 EST
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
 
     <script src="script.js"></script>

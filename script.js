@@ -1,19 +1,74 @@
-// Sound effects
-const sounds = {
-  click: new Audio("sounds/click.mp3"),
-  action: new Audio("sounds/action.mp3"),
-  confirm: new Audio("sounds/confirm.mp3"),
-  error: new Audio("sounds/error.mp3"),
-};
+// Массив смешных экономических новостей
+const funnyNews = [
+  "BREAKING: Economists discover money actually CAN buy happiness (but only in bulk purchases)",
+  "Federal Reserve considers paying people to spend money to stimulate spending",
+  "Wall Street traders spotted using lunch money to buy crypto",
+  "New study: 99% of economists just making it up as they go",
+  "Bitcoin price doubles after Elon Musk tweets a meme with a dog",
+  "Treasury Department switches to pink ink for debt reports after red ink shortage",
+  "Congress debates replacing dollar bills with TikTok coins for 'younger appeal'",
+  "Economy grows 0.001% after everyone starts side hustles selling NFTs of their pets",
+  "Inflation officially blamed on millennials buying too much avocado toast",
+  "Stock market hits record high, then remembers today is Monday and corrects",
+  "GDP now measured in 'likes' and 'retweets' for more accurate assessment",
+  "New economic theory suggests printing money on both sides of paper could double wealth",
+  "Banks introduce 'surprise fee' feature to keep customers on their toes",
+  "Economists confirm trickle-down economics works - if you're the one doing the trickling",
+  "Bitcoin miner accidentally solves world hunger while trying to mine more coins",
+  "Government considers paying national debt in exposure and experience",
+  "New crypto coin 'MaybeCoin' launches with 50/50 chance of being worth something",
+  "Fed Chair seen flipping coin to decide next interest rate move",
+  "Economy declared 'too big to fail' for the 127th time this year",
+  "Study finds 100% of economic forecasts are 50% accurate",
+  "New app lets you invest in your friend's startup ideas that will 'totally work'",
+  "Goldman Sachs launches new 'Hope and Pray' investment portfolio",
+  "Market volatility blamed on traders forgetting to take their morning coffee",
+  "CEO pay now officially measured in 'regular worker lifetimes'",
+  "Economists confirm recessions are just the economy's way of saying 'I need some me time'",
+  "New cryptocurrency 'PretendCoin' valued at whatever you imagine it's worth",
+  "Banks introduce 'mystery balance' feature to make checking accounts more exciting",
+  "Government starts measuring unemployment in 'gig economy high fives'",
+  "Economy improves slightly after everyone agrees to pretend it's fine",
+  "New study shows money can't buy happiness, but it can buy a yacht big enough to sail right up to it",
+  "Stock market introduces 'undo' button for bad trades (only works 10% of the time)",
+  "Federal Reserve now accepting memes as collateral for loans",
+  "Bitcoin drops 30% after someone points out it's not actually backed by anything",
+  "Economists discover new economic principle: 'The more you print, the less it's worth'",
+  "GDP recalculated to include the value of all unpaid internships",
+  "New economic stimulus package just a box of 'good vibes' mailed to every citizen",
+  "Banks announce new 'surprise mortgage rate' program to keep life interesting",
+  "Economy declared 'mostly organic and free-range' by new government standards",
+  "Study finds 78% of economic growth comes from people pretending to understand economics",
+  "Government replaces entire tax code with 'just pay what you think is fair' system",
+  "New crypto wallet automatically converts savings to 'worthless' when market crashes",
+  "Fed announces new 'quantitative easing' program involving actual hugs",
+  "Economists confirm inflation is just capitalism's way of keeping us on our toes",
+  "Stock market introduces 'seasonal flavors' to boost investor interest",
+  "Bitcoin mining now classified as performance art by SEC",
+  "New economic indicator: 'How many lattes you could buy with your savings'",
+  "Government considers replacing money with 'good boy points' system",
+  "Study shows 100% of economic predictions are wrong, just at different times",
+  "Banks introduce 'mood-based interest rates' that change with teller's feelings",
+  "Economy now running on 90% hopes and dreams, 10% actual value",
+  "New investment strategy: 'Close your eyes and point at the stock page'",
+  "Federal Reserve chair admits they just google 'what is a good interest rate'",
+  "GDP growth attributed entirely to one guy in Nebraska who's been working really hard",
+  "Economists discover secret to infinite wealth (requires initial investment of infinite wealth)",
+  "New study finds the best time to invest was 'probably before you heard about it'",
+  "Stock market introduces 'loot box' system for more exciting trading experience",
+  "Bitcoin enthusiasts declare latest crash 'a good thing actually'",
+  "Government announces new 'thoughts and prayers' economic stimulus package",
+  "Economy now powered by 100% renewable anxiety",
+  "Banks to introduce 'surprise account balance' feature for added excitement",
+];
 
-// Current date and time
-function updateDateTime() {
-  const now = new Date();
-  document.getElementById("refresh-time").textContent = now.toLocaleString();
-  document.querySelectorAll(".log-time").forEach((el) => {
-    el.textContent = now.toLocaleTimeString();
-  });
-}
+// Звуки (заглушки)
+const sounds = {
+  click: { play: () => {} },
+  action: { play: () => {} },
+  confirm: { play: () => {} },
+  error: { play: () => {} },
+};
 
 // Policy effects - predefined responses
 const policyEffects = {
@@ -136,13 +191,13 @@ function showConfirmation(message) {
   const box = document.createElement("div");
   box.className = "confirmation-box";
   box.innerHTML = `
-        <h3>CONFIRM POLICY CHANGE</h3>
-        <p>${message}</p>
-        <div class="confirmation-buttons">
-            <button class="confirm-btn" onclick="confirmAction(true)">✅ APPROVE</button>
-            <button class="cancel-btn" onclick="confirmAction(false)">❌ CANCEL</button>
-        </div>
-    `;
+    <h3>CONFIRM POLICY CHANGE</h3>
+    <p>${message}</p>
+    <div class="confirmation-buttons">
+      <button class="confirm-btn" onclick="confirmAction(true)">✅ APPROVE</button>
+      <button class="cancel-btn" onclick="confirmAction(false)">❌ CANCEL</button>
+    </div>
+  `;
 
   overlay.appendChild(box);
   document.body.appendChild(overlay);
@@ -161,8 +216,10 @@ function confirmAction(confirmed) {
   const box = document.querySelector(".confirmation-box");
 
   // Animation
-  box.style.transform = "scale(0.5)";
-  box.style.opacity = "0";
+  if (box) {
+    box.style.transform = "scale(0.5)";
+    box.style.opacity = "0";
+  }
 
   setTimeout(() => {
     if (overlay) document.body.removeChild(overlay);
@@ -170,15 +227,6 @@ function confirmAction(confirmed) {
 
   if (confirmed && currentAction) {
     const effect = policyEffects[currentAction];
-
-    // Confetti effect
-    const btn = document.querySelector(
-      `[onclick="executePolicy('${currentAction}')"]`
-    );
-    if (btn) {
-      const rect = btn.getBoundingClientRect();
-      createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
-    }
 
     // Add to log
     addLogEntry(`[ACTION EXECUTED] ${effect.message}`);
@@ -193,15 +241,30 @@ function confirmAction(confirmed) {
   }
 }
 
+function createConfetti(x, y) {
+  // Simplified confetti effect
+  const confetti = document.createElement("div");
+  confetti.className = "confetti";
+  confetti.style.left = `${x}px`;
+  confetti.style.top = `${y}px`;
+  document.body.appendChild(confetti);
+
+  setTimeout(() => {
+    document.body.removeChild(confetti);
+  }, 1000);
+}
+
 // Execute policy
-function executePolicy(policy) {
+function executePolicy(policy, event) {
   sounds.click.play();
 
-  // Button press effect
-  event.target.classList.add("button-press");
-  setTimeout(() => {
-    event.target.classList.remove("button-press");
-  }, 200);
+  if (event) {
+    // Button press effect
+    event.target.classList.add("button-press");
+    setTimeout(() => {
+      event.target.classList.remove("button-press");
+    }, 200);
+  }
 
   currentAction = policy;
   const effect = policyEffects[policy];
@@ -267,6 +330,8 @@ function updateIndicator(indicator, change) {
 // Add entry to log
 function addLogEntry(message) {
   const log = document.getElementById("log");
+  if (!log) return;
+
   const logEntry = document.createElement("div");
   logEntry.className = "log-entry";
 
@@ -281,44 +346,104 @@ function addLogEntry(message) {
   setTimeout(() => {
     logEntry.style.backgroundColor = "";
   }, 1000);
-}
 
-// Confetti effect
-function createConfetti(x, y) {
-  const colors = ["#ff6b6b", "#4ecdc4", "#ffe66d", "#ffffff"];
-  const confetti = document.createElement("div");
-  confetti.className = "confetti-container";
-  confetti.style.left = `${x}px`;
-  confetti.style.top = `${y}px`;
-
-  for (let i = 0; i < 50; i++) {
-    const piece = document.createElement("div");
-    piece.className = "confetti-piece";
-    piece.style.backgroundColor =
-      colors[Math.floor(Math.random() * colors.length)];
-    piece.style.left = `${Math.random() * 20 - 10}px`;
-    piece.style.animationDelay = `${Math.random() * 0.5}s`;
-    confetti.appendChild(piece);
+  // Limit log entries
+  if (log.children.length > 15) {
+    log.removeChild(log.lastChild);
   }
-
-  document.body.appendChild(confetti);
-
-  setTimeout(() => {
-    document.body.removeChild(confetti);
-  }, 3000);
 }
 
 // Shake element
 function shakeElement(element) {
+  if (!element) return;
+
   element.classList.add("shake");
   setTimeout(() => {
     element.classList.remove("shake");
   }, 500);
 }
 
+// Start news feed
+function startNewsFeed() {
+  const newsContainer = document.getElementById("news-feed");
+  if (!newsContainer) return;
+
+  // Add initial news items
+  for (let i = 0; i < 5; i++) {
+    const randomNews = funnyNews[Math.floor(Math.random() * funnyNews.length)];
+    const newsEntry = document.createElement("div");
+    newsEntry.className = "news-entry";
+    newsEntry.textContent = randomNews;
+    newsContainer.appendChild(newsEntry);
+  }
+
+  // Add new news every 2 seconds
+  setInterval(() => {
+    const randomNews = funnyNews[Math.floor(Math.random() * funnyNews.length)];
+    const newsEntry = document.createElement("div");
+    newsEntry.className = "news-entry";
+    newsEntry.textContent = randomNews;
+    newsContainer.prepend(newsEntry);
+
+    // Limit news items
+    if (newsContainer.children.length > 10) {
+      newsContainer.removeChild(newsContainer.lastChild);
+    }
+  }, 2000);
+}
+
+// Current date and time
+function updateDateTime() {
+  const now = new Date();
+  const refreshElement = document.getElementById("refresh-time");
+  if (refreshElement) {
+    refreshElement.textContent = now.toLocaleString();
+  }
+
+  document.querySelectorAll(".log-time").forEach((el) => {
+    el.textContent = now.toLocaleTimeString();
+  });
+}
+
+// Setup category toggles
+function setupCategoryToggles() {
+  document.querySelectorAll(".category h3").forEach((header) => {
+    header.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const category = this.closest(".category");
+      const wasActive = category.classList.contains("active");
+
+      // Close all categories
+      document.querySelectorAll(".category").forEach((c) => {
+        c.classList.remove("active");
+      });
+
+      // Open current if it wasn't active
+      if (!wasActive) {
+        category.classList.add("active");
+        sounds.click.play();
+      }
+    });
+  });
+
+  // Prevent buttons from closing categories
+  document.querySelectorAll(".category-buttons button").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  });
+}
+
 // Initialize
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
   updateDateTime();
+  startNewsFeed();
+  setupCategoryToggles();
+
+  // Add initial log entries
+  addLogEntry("System initialized");
+  addLogEntry("Connected to Federal Reserve data feed");
+  addLogEntry("Economic simulation ready");
 
   // Simulate API data refresh every 60 seconds
   setInterval(() => {
@@ -343,24 +468,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add to log
     addLogEntry("[SYSTEM] Data refresh completed");
   }, 60000);
+}
 
-  // Category toggle functionality
-  document.querySelectorAll(".category h3").forEach((header) => {
-    header.addEventListener("click", function () {
-      const category = this.parentElement;
-      category.classList.toggle("active");
+// Start the application when DOM is loaded
+document.addEventListener("DOMContentLoaded", init);
 
-      // Close other open categories
-      document.querySelectorAll(".category").forEach((c) => {
-        if (c !== category && c.classList.contains("active")) {
-          c.classList.remove("active");
-        }
-      });
-    });
-  });
-
-  // Initial log entries
-  addLogEntry("System initialized");
-  addLogEntry("Connected to Federal Reserve data feed");
-  addLogEntry("Awaiting policy decisions");
-});
+// Make functions available globally
+window.executePolicy = executePolicy;
+window.confirmAction = confirmAction;
+window.updateIndicator = updateIndicator;
+window.addLogEntry = addLogEntry;
+window.shakeElement = shakeElement;
