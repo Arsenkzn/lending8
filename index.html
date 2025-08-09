@@ -5,33 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECONOMY PANEL - US Economic Control Center</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.jpg" />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
-      <header>
-        <h1>🇺🇸 ECONOMY PANEL v4.2.1</h1>
-        <a href="https://x.com" target="_blank" class="sk-external-link">
-          <img
-            src="./img/btnX.jpg"
-            alt="External Link"
-            class="sk-external-btn"
-          />
-        </a>
-        <div class="status-indicator">
-          <div class="led active"></div>
-          <span>SYSTEM ONLINE</span>
+      <header class="panel-border">
+        <div class="header-content">
+          <h1>🇺🇸 ECONOMY PANEL v4.2.1</h1>
+
+          <a href="https://x.com" target="_blank" class="sk-external-link">
+            <img
+              src="./img/btnX.jpg"
+              alt="External Link"
+              class="sk-external-btn"
+            />
+          </a>
+          <div class="status-indicator">
+            <div class="led active"></div>
+            <span>SYSTEM ONLINE</span>
+          </div>
         </div>
       </header>
 
       <div class="dashboard-grid">
         <!-- Economic Indicators Section -->
-        <section class="economic-indicators">
-          <h2>📊 US ECONOMIC DASHBOARD</h2>
+        <section class="economic-indicators panel-border">
+          <h2><i class="fas fa-chart-line"></i> US ECONOMIC DASHBOARD</h2>
           <div class="indicators-grid">
             <div class="indicator">
               <div class="indicator-label">GDP (TRILLIONS)</div>
@@ -69,76 +76,87 @@
         </section>
 
         <!-- Control Panel Section -->
-        <section class="control-panel">
-          <h2>🎛️ POLICY CONTROL CENTER</h2>
+        <section class="control-panel panel-border">
+          <h2><i class="fas fa-sliders-h"></i> POLICY CONTROL CENTER</h2>
           <div class="control-categories">
             <div class="category">
-              <h3>💰 ECONOMIC POLICY</h3>
-              <button class="control-btn" onclick="executePolicy('taxes')">
-                RAISE FEDERAL TAXES
-              </button>
-              <button class="control-btn" onclick="executePolicy('interest')">
-                LOWER INTEREST RATE
-              </button>
-              <button class="control-btn" onclick="executePolicy('print')">
-                PRINT MORE MONEY
-              </button>
-              <button class="control-btn" onclick="executePolicy('gas')">
-                FREEZE GAS PRICES
-              </button>
-              <button class="control-btn" onclick="executePolicy('spending')">
-                CUT PUBLIC SPENDING
-              </button>
+              <h3><i class="fas fa-money-bill-wave"></i> ECONOMIC POLICY</h3>
+              <div class="category-buttons">
+                <button class="control-btn" onclick="executePolicy('taxes')">
+                  <i class="fas fa-arrow-up"></i> RAISE FEDERAL TAXES
+                </button>
+                <button class="control-btn" onclick="executePolicy('interest')">
+                  <i class="fas fa-arrow-down"></i> LOWER INTEREST RATE
+                </button>
+                <button class="control-btn" onclick="executePolicy('print')">
+                  <i class="fas fa-print"></i> PRINT MORE MONEY
+                </button>
+                <button class="control-btn" onclick="executePolicy('gas')">
+                  <i class="fas fa-gas-pump"></i> FREEZE GAS PRICES
+                </button>
+                <button class="control-btn" onclick="executePolicy('spending')">
+                  <i class="fas fa-cut"></i> CUT PUBLIC SPENDING
+                </button>
+              </div>
             </div>
+
             <div class="category">
-              <h3>🧑‍🤝‍🧑 SOCIAL POLICY</h3>
-              <button class="control-btn" onclick="executePolicy('ubi')">
-                INTRODUCE UBI
-              </button>
-              <button class="control-btn" onclick="executePolicy('debt')">
-                CANCEL STUDENT DEBT
-              </button>
-              <button class="control-btn" onclick="executePolicy('wage')">
-                RAISE MINIMUM WAGE
-              </button>
-              <button class="control-btn" onclick="executePolicy('healthcare')">
-                INVEST IN HEALTHCARE
-              </button>
-              <button class="control-btn" onclick="executePolicy('tech')">
-                REGULATE TECH GIANTS
-              </button>
+              <h3><i class="fas fa-users"></i> SOCIAL POLICY</h3>
+              <div class="category-buttons">
+                <button class="control-btn" onclick="executePolicy('ubi')">
+                  <i class="fas fa-hand-holding-usd"></i> INTRODUCE UBI
+                </button>
+                <button class="control-btn" onclick="executePolicy('debt')">
+                  <i class="fas fa-graduation-cap"></i> CANCEL STUDENT DEBT
+                </button>
+                <button class="control-btn" onclick="executePolicy('wage')">
+                  <i class="fas fa-dollar-sign"></i> RAISE MINIMUM WAGE
+                </button>
+                <button
+                  class="control-btn"
+                  onclick="executePolicy('healthcare')"
+                >
+                  <i class="fas fa-hospital"></i> INVEST IN HEALTHCARE
+                </button>
+                <button class="control-btn" onclick="executePolicy('tech')">
+                  <i class="fas fa-microchip"></i> REGULATE TECH GIANTS
+                </button>
+              </div>
             </div>
+
             <div class="category">
-              <h3>📉 CRYPTO & TECH</h3>
-              <button class="control-btn" onclick="executePolicy('crypto')">
-                LEGALIZE ALL CRYPTO
-              </button>
-              <button class="control-btn" onclick="executePolicy('nft')">
-                TAX NFT TRADING
-              </button>
-              <button class="control-btn" onclick="executePolicy('govcoin')">
-                CREATE GOVCOIN
-              </button>
-              <button class="control-btn" onclick="executePolicy('voting')">
-                LAUNCH BLOCKCHAIN VOTING
-              </button>
-              <button class="control-btn" onclick="executePolicy('ai')">
-                FUND AI OVERSIGHT
-              </button>
+              <h3><i class="fas fa-bitcoin"></i> CRYPTO & TECH</h3>
+              <div class="category-buttons">
+                <button class="control-btn" onclick="executePolicy('crypto')">
+                  <i class="fas fa-coins"></i> LEGALIZE ALL CRYPTO
+                </button>
+                <button class="control-btn" onclick="executePolicy('nft')">
+                  <i class="fas fa-receipt"></i> TAX NFT TRADING
+                </button>
+                <button class="control-btn" onclick="executePolicy('govcoin')">
+                  <i class="fas fa-landmark"></i> CREATE GOVCOIN
+                </button>
+                <button class="control-btn" onclick="executePolicy('voting')">
+                  <i class="fas fa-vote-yea"></i> LAUNCH BLOCKCHAIN VOTING
+                </button>
+                <button class="control-btn" onclick="executePolicy('ai')">
+                  <i class="fas fa-robot"></i> FUND AI OVERSIGHT
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- Event Log Section -->
-        <section class="event-log">
-          <h2>📜 EVENT LOG / CONSEQUENCES</h2>
+        <section class="event-log panel-border">
+          <h2><i class="fas fa-scroll"></i> EVENT LOG / CONSEQUENCES</h2>
           <div class="log-container" id="log">
             <div class="log-entry">
               System initialized at <span class="log-time"></span>
             </div>
             <div class="log-entry">Connected to Federal Reserve data feed</div>
             <div class="log-entry">
-              Last policy update: 2025-08-08 14:30 EST
+              Last policy update: <span class="log-time"></span>
             </div>
           </div>
         </section>
@@ -157,6 +175,11 @@
         </div>
       </footer>
     </div>
+
+    <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="actionSound" src="sounds/action.mp3" preload="auto"></audio>
+    <audio id="confirmSound" src="sounds/confirm.mp3" preload="auto"></audio>
+    <audio id="errorSound" src="sounds/error.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
   </body>

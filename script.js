@@ -1,3 +1,11 @@
+// Sound effects
+const sounds = {
+  click: new Audio("sounds/click.mp3"),
+  action: new Audio("sounds/action.mp3"),
+  confirm: new Audio("sounds/confirm.mp3"),
+  error: new Audio("sounds/error.mp3"),
+};
+
 // Current date and time
 function updateDateTime() {
   const now = new Date();
@@ -116,25 +124,90 @@ const policyEffects = {
   },
 };
 
-// Execute policy and update indicators
-function executePolicy(policy) {
-  const effect = policyEffects[policy];
-  if (!effect) return;
+// Confirmation overlay
+let currentAction = null;
 
-  // Add to log
-  const log = document.getElementById("log");
-  const logEntry = document.createElement("div");
-  logEntry.className = "log-entry";
-  logEntry.textContent = `[ACTION] ${effect.message}`;
-  log.prepend(logEntry);
+function showConfirmation(message) {
+  sounds.action.play();
 
-  // Update indicators
-  for (const [indicator, change] of Object.entries(effect.effects)) {
-    updateIndicator(indicator, change);
+  const overlay = document.createElement("div");
+  overlay.className = "confirmation-overlay";
+
+  const box = document.createElement("div");
+  box.className = "confirmation-box";
+  box.innerHTML = `
+        <h3>CONFIRM POLICY CHANGE</h3>
+        <p>${message}</p>
+        <div class="confirmation-buttons">
+            <button class="confirm-btn" onclick="confirmAction(true)">✅ APPROVE</button>
+            <button class="cancel-btn" onclick="confirmAction(false)">❌ CANCEL</button>
+        </div>
+    `;
+
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+
+  // Animation
+  setTimeout(() => {
+    box.style.transform = "scale(1)";
+    box.style.opacity = "1";
+  }, 10);
+}
+
+function confirmAction(confirmed) {
+  sounds.confirm.play();
+
+  const overlay = document.querySelector(".confirmation-overlay");
+  const box = document.querySelector(".confirmation-box");
+
+  // Animation
+  box.style.transform = "scale(0.5)";
+  box.style.opacity = "0";
+
+  setTimeout(() => {
+    if (overlay) document.body.removeChild(overlay);
+  }, 300);
+
+  if (confirmed && currentAction) {
+    const effect = policyEffects[currentAction];
+
+    // Confetti effect
+    const btn = document.querySelector(
+      `[onclick="executePolicy('${currentAction}')"]`
+    );
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+
+    // Add to log
+    addLogEntry(`[ACTION EXECUTED] ${effect.message}`);
+
+    // Update indicators
+    for (const [indicator, change] of Object.entries(effect.effects)) {
+      updateIndicator(indicator, change);
+    }
+  } else {
+    sounds.error.play();
+    addLogEntry(`[ACTION CANCELLED] Policy change was not approved`);
   }
+}
 
-  // Scroll log to top
-  log.scrollTop = 0;
+// Execute policy
+function executePolicy(policy) {
+  sounds.click.play();
+
+  // Button press effect
+  event.target.classList.add("button-press");
+  setTimeout(() => {
+    event.target.classList.remove("button-press");
+  }, 200);
+
+  currentAction = policy;
+  const effect = policyEffects[policy];
+  if (effect) {
+    showConfirmation(effect.message);
+  }
 }
 
 // Update indicator values with animation
@@ -173,7 +246,7 @@ function updateIndicator(indicator, change) {
   setTimeout(() => {
     element.textContent = formattedValue;
     element.style.transform = "scale(1)";
-    element.style.color = "#00ff9d";
+    element.style.color = "";
   }, 300);
 
   // Update change indicator
@@ -189,6 +262,58 @@ function updateIndicator(indicator, change) {
       : "▬ 0.00%";
   changeElement.style.color =
     change > 0 ? "#00ff9d" : change < 0 ? "#ff2d75" : "#00b4ff";
+}
+
+// Add entry to log
+function addLogEntry(message) {
+  const log = document.getElementById("log");
+  const logEntry = document.createElement("div");
+  logEntry.className = "log-entry";
+
+  const now = new Date();
+  logEntry.innerHTML = `${message} <span class="log-time">${now.toLocaleTimeString()}</span>`;
+
+  log.prepend(logEntry);
+  log.scrollTop = 0;
+
+  // Highlight new entry
+  logEntry.style.backgroundColor = "rgba(255, 230, 109, 0.1)";
+  setTimeout(() => {
+    logEntry.style.backgroundColor = "";
+  }, 1000);
+}
+
+// Confetti effect
+function createConfetti(x, y) {
+  const colors = ["#ff6b6b", "#4ecdc4", "#ffe66d", "#ffffff"];
+  const confetti = document.createElement("div");
+  confetti.className = "confetti-container";
+  confetti.style.left = `${x}px`;
+  confetti.style.top = `${y}px`;
+
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+    piece.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+    piece.style.left = `${Math.random() * 20 - 10}px`;
+    piece.style.animationDelay = `${Math.random() * 0.5}s`;
+    confetti.appendChild(piece);
+  }
+
+  document.body.appendChild(confetti);
+
+  setTimeout(() => {
+    document.body.removeChild(confetti);
+  }, 3000);
+}
+
+// Shake element
+function shakeElement(element) {
+  element.classList.add("shake");
+  setTimeout(() => {
+    element.classList.remove("shake");
+  }, 500);
 }
 
 // Initialize
@@ -216,11 +341,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Add to log
-    const log = document.getElementById("log");
-    const logEntry = document.createElement("div");
-    logEntry.className = "log-entry";
-    logEntry.textContent = `[SYSTEM] Data refresh completed at ${new Date().toLocaleTimeString()}`;
-    log.prepend(logEntry);
-    log.scrollTop = 0;
+    addLogEntry("[SYSTEM] Data refresh completed");
   }, 60000);
+
+  // Category toggle functionality
+  document.querySelectorAll(".category h3").forEach((header) => {
+    header.addEventListener("click", function () {
+      const category = this.parentElement;
+      category.classList.toggle("active");
+
+      // Close other open categories
+      document.querySelectorAll(".category").forEach((c) => {
+        if (c !== category && c.classList.contains("active")) {
+          c.classList.remove("active");
+        }
+      });
+    });
+  });
+
+  // Initial log entries
+  addLogEntry("System initialized");
+  addLogEntry("Connected to Federal Reserve data feed");
+  addLogEntry("Awaiting policy decisions");
 });
