@@ -99,6 +99,11 @@ header {
   background-color: antiquewhite;
 }
 
+.h2 {
+  gap: 20px;
+  background-color: antiquewhite;
+}
+
 .header-controls {
   display: flex;
   align-items: center;
